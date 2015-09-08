@@ -9,7 +9,7 @@ package ca1;
  *
  * @author Jonas
  */
-public class ClientServer {
+public class ChatServer {
 
     /**
      * @param args the command line arguments
