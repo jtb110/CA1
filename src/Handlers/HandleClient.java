@@ -24,6 +24,7 @@ public class HandleClient extends Thread {
     PrintWriter writer;
     Socket s;
     ChatServer chat;
+    String clientName;
 
     public HandleClient(Socket socket,ChatServer cs) throws IOException {
         s = socket;
@@ -34,14 +35,19 @@ public class HandleClient extends Thread {
     }
     public void send (String msg){
         writer.println(msg);
-        
+    }
+    public String getClientName(){
+        return this.clientName;
     }
     public void run() {
-        String message = input.nextLine();
-        //IMPORTANT blocking call
+        clientName = input.nextLine(); //IMPORTANT blocking call
+        
+        String message = input.nextLine(); //IMPORTANT blocking call
+        
         Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
         while (!message.equals(ProtocolStrings.STOP)) {
             chat.send(message);
+            
 //            writer.println(message.toUpperCase());
             Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
             message = input.nextLine(); //IMPORTANT blocking call
