@@ -26,34 +26,39 @@ public class HandleClient extends Thread {
     ChatServer chat;
     String clientName;
 
-    public HandleClient(Socket socket,ChatServer cs) throws IOException {
+    public HandleClient(Socket socket, ChatServer cs) throws IOException {
         s = socket;
         this.chat = cs;
         input = new Scanner(socket.getInputStream());
         writer = new PrintWriter(socket.getOutputStream(), true);
 
     }
-    public void send (String msg){
+
+    public void send(String msg) {
         writer.println(msg);
     }
-    public String getClientName(){
+
+    public String getClientName() {
         return this.clientName;
     }
+
     public void run() {
+        writer.println("you are now logged into the chatserver. Write ur username");
         clientName = input.nextLine(); //IMPORTANT blocking call
-        
+
         String message = input.nextLine(); //IMPORTANT blocking call
-        
+
         Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
         while (!message.equals(ProtocolStrings.STOP)) {
-            chat.send(message);
-            
+
+            chat.send(message, this);
+
 //            writer.println(message.toUpperCase());
             Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
             message = input.nextLine(); //IMPORTANT blocking call
         }
         {
-            
+
             writer.println(ProtocolStrings.STOP);//Echo the stop message back to the client for a nice closedown
             try {
                 s.close();

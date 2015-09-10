@@ -32,18 +32,18 @@ public class ChatServer implements Observer {
         keepRunning = false;
     }
 
-    public void send(String msg) {
+    public void send(String msg, HandleClient client) {
         String[] out = msg.split("#");
         String[] clientNames = out[1].split(",");
         int j = 0;
         System.out.println("jeg er nu inde i chatservers hej");
-        if (out[1] == "*") {
+        if (out[1].equals("*")) {
             
                 System.out.println("jeg vil sende til alle");
             for (int i = 0; i < cl.size(); i++) {
-                cl.get(i).send(out[2]);
+                cl.get(i).send(client.getClientName()+": "+out[2]);
             }
-        }else if (clientNames.length == 1&& !clientNames[1].equals("*")){
+        }else if (clientNames.length == 1&& !clientNames[0].equals("*")){
             for (int i = 0; i < cl.size(); i++) {
                 
                 System.out.println("jeg vil sende til en");
@@ -51,7 +51,7 @@ public class ChatServer implements Observer {
                 if(cl.get(i).getClientName().equals(clientNames[0])){
                     HandleClient client1 = cl.get(i);
                     System.out.println("vi sender om lidt");
-                            client1.send(out[2]);
+                            client1.send(client.getClientName()+": "+out[2]);
                 
                 System.out.println("nu prøver jeg at sende til en");
                 System.out.println(out[2]);
@@ -61,10 +61,10 @@ public class ChatServer implements Observer {
         {
             
                 System.out.println("jeg vil sende til flere");
-            while(clientNames[j]!=null){
+            while(j<clientNames.length){
             for (int i = 0; i < cl.size(); i++){
-                if(cl.get(i).getClientName()== clientNames[j])
-                cl.get(i).send(out[2]);
+                if(cl.get(i).getClientName().equals(clientNames[j]))
+                cl.get(i).send(client.getClientName()+": "+out[2]);
             }
             j++;
             }
