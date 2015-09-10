@@ -37,21 +37,20 @@ public class ChatServer implements Observer {
         String[] clientNames = out[1].split(",");
         int j = 0;
         System.out.println("jeg er nu inde i chatservers hej");
+        
         if (out[1].equals("*")) {
-            
                 System.out.println("jeg vil sende til alle");
             for (int i = 0; i < cl.size(); i++) {
-                cl.get(i).send(client.getClientName()+": "+out[2]);
+                cl.get(i).send("MSG#"+client.getClientName()+"#: "+out[2]);
             }
         }else if (clientNames.length == 1&& !clientNames[0].equals("*")){
             for (int i = 0; i < cl.size(); i++) {
-                
                 System.out.println("jeg vil sende til en");
                 System.out.println(clientNames[0]);
                 if(cl.get(i).getClientName().equals(clientNames[0])){
                     HandleClient client1 = cl.get(i);
                     System.out.println("vi sender om lidt");
-                            client1.send(client.getClientName()+": "+out[2]);
+                            client1.send("MSG#"+client.getClientName()+"#: "+out[2]);
                 
                 System.out.println("nu prøver jeg at sende til en");
                 System.out.println(out[2]);
@@ -64,7 +63,7 @@ public class ChatServer implements Observer {
             while(j<clientNames.length){
             for (int i = 0; i < cl.size(); i++){
                 if(cl.get(i).getClientName().equals(clientNames[j]))
-                cl.get(i).send(client.getClientName()+": "+out[2]);
+                cl.get(i).send("MSG#"+client.getClientName()+"#: "+out[2]);
             }
             j++;
             }
@@ -107,7 +106,7 @@ public class ChatServer implements Observer {
 
                 Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, "Connected to a client");
                 HandleClient Hc = new HandleClient(socket, this);
-                Hc.start();
+                new Thread (Hc).start();
                 cl.add(Hc);
 //        handleClient(socket);
             } while (keepRunning);
@@ -121,10 +120,19 @@ public class ChatServer implements Observer {
 //        String pik = "hej#pik#hej2";
 //        String[] pik2 = pik.split("#");
 //        System.out.println(pik2.length);
+        
     }
 
     @Override
     public void update(Observable o, Object o1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String nameList= "";
+        for (int i = 0; i < cl.size(); i++) {
+                
+                nameList+=cl.get(i).getClientName()+",";
+            }
+        for (int i = 0; i < cl.size(); i++) {
+                cl.get(i).send("USERLIST#"+nameList);
+            }
+        
     }
 }
