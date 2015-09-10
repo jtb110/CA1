@@ -5,7 +5,7 @@
  */
 package ca1;
 
-import Fisse.ProtocolStrings;
+import Shared.ProtocolStrings;
 import Handlers.HandleClient;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +31,7 @@ public class ChatServer implements Observer {
     public static void stopServer() {
         keepRunning = false;
     }
-
+    
     public void send(String msg, HandleClient client) {
         String[] out = msg.split("#");
         String[] clientNames = out[1].split(",");

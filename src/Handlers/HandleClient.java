@@ -1,6 +1,6 @@
 package Handlers;
 
-import Fisse.ProtocolStrings;
+import Shared.ProtocolStrings;
 import ca1.ChatServer;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -63,10 +63,10 @@ public class HandleClient extends Observable implements Runnable {
         Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
         while (!message.equals(ProtocolStrings.STOP)) {
             msg = message.split("#");
-            if (msg[0].equals("MSG"))
+            if (msg[0].equals("MSG")){
             chat.send(message, this);
-            else{
-                chat.send("MSG#Server#Plz use the right protocol",this);
+            }else{
+                send("MSG#Server#Plz use the right protocol");
             }
 
 //            writer.println(message.toUpperCase());

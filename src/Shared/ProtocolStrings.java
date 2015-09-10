@@ -1,4 +1,4 @@
-package Fisse;
+package Shared;
 
 /**
  * @author Lars Mortensen
