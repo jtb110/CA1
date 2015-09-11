@@ -92,7 +92,7 @@ public class ChatServer implements Observer {
         cl.remove(hc);
     }
 
-    private void runServer() {
+    public void runServer() {
         int port = Integer.parseInt(properties.getProperty("port"));
         String ip = properties.getProperty("serverIp");
 
@@ -115,7 +115,11 @@ public class ChatServer implements Observer {
     }
 
     public static void main(String[] args) {
+        String logFile = properties.getProperty("logFile");
+    Utils.setLogFile(logFile,ChatServer.class.getName());
     new ChatServer().runServer();
+    
+    Utils.closeLogger(ChatServer.class.getName());
 //        String pik = "hej#pik#hej2";
 //        String[] pik2 = pik.split("#");
 //        System.out.println(pik2.length);

@@ -12,14 +12,16 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Properties;
 import java.util.Scanner;
-
+import utils.Utils;
 /**
  *
  * @author noncowi
  */
 public class ChatClient extends Observable implements Runnable {
 
+    private static final Properties properties = Utils.initProperties("server.properties");
     boolean listening;
     Socket socket;
     private int port;
@@ -32,9 +34,9 @@ public class ChatClient extends Observable implements Runnable {
         listening = true;
     }
 
-    public void connect(String address, int port) throws UnknownHostException, IOException {
-        this.port = port;
-        serverAddress = InetAddress.getByName(address);
+    public void connect() throws UnknownHostException, IOException {
+        this.port = Integer.parseInt(properties.getProperty("port"));
+        serverAddress = InetAddress.getByName(properties.getProperty("serverIp"));
         socket = new Socket(serverAddress, this.port);
         input = new Scanner(socket.getInputStream());
         output = new PrintWriter(socket.getOutputStream(), true);  //Set to true, to get auto flush behaviour
@@ -68,7 +70,7 @@ public class ChatClient extends Observable implements Runnable {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         ChatClient client = new ChatClient();
-        client.connect("localhost", 9090);
+        client.connect();
         client.addObserver(new Observer() {
 
             @Override

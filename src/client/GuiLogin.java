@@ -80,7 +80,7 @@ public class GuiLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            client.connect("localhost", 9090);
+            client.connect();
         } catch (IOException ex) {
             Logger.getLogger(GuiLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
