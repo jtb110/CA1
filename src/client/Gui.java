@@ -5,17 +5,26 @@
  */
 package client;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author noncowi
  */
-public class Gui extends javax.swing.JFrame {
-
+public class Gui extends javax.swing.JFrame implements Observer {
+    ChatClient client = new ChatClient();
     /**
      * Creates new form Gui
      */
-    public Gui() {
+    public Gui(){
         initComponents();
+    }
+    public Gui(ChatClient client) {
+        initComponents();
+        this.client=client;
+        client.addObserver(this);
+        
     }
 
     /**
@@ -147,15 +156,17 @@ public class Gui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sendUsersFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendUsersFieldActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_sendUsersFieldActionPerformed
 
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
-        // TODO add your handling code here:
+        client.sendToUsers(sendTextField.getText(), sendUsersField.getText());
+        sendTextField.setText("");
     }//GEN-LAST:event_sendBtnActionPerformed
 
     private void sendToAllBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendToAllBtnActionPerformed
-        // TODO add your handling code here:
+        client.sendToAll(sendTextField.getText());
+        sendTextField.setText("");
     }//GEN-LAST:event_sendToAllBtnActionPerformed
 
     /**
@@ -188,7 +199,8 @@ public class Gui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Gui().setVisible(true);
+                
+                new Gui().setVisible(false);
             }
         });
     }
@@ -206,4 +218,9 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JTextField sendUsersField;
     private javax.swing.JTextArea usrLstField;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object o1) {
+        chatWindow.append(o1+"\n");
+    }
 }

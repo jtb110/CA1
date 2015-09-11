@@ -55,12 +55,12 @@ public class ChatClient extends Observable implements Runnable {
         }
     }
 
-    private void sendToAll(String msg) {
+    public void sendToAll(String msg) {
         this.msg = "MSG#*#" + msg;
         output.println(this.msg);
     }
 
-    private void sendToUsers(String msg, String users) {
+    public void sendToUsers(String msg, String users) {
         this.msg = "MSG#" + users + "#" + msg;
         output.println(this.msg);
     }
