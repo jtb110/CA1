@@ -1,7 +1,7 @@
-package Handlers;
+package serverRelated;
 
-import Shared.ProtocolStrings;
-import ca1.ChatServer;
+import shared.ProtocolStrings;
+import serverRelated.ChatServer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;

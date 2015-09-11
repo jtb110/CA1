@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca1;
+package serverRelated;
 
-import Shared.ProtocolStrings;
-import Handlers.HandleClient;
+import shared.ProtocolStrings;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
@@ -41,7 +40,7 @@ public class ChatServer implements Observer {
         if (out[1].equals("*")) {
                 System.out.println("jeg vil sende til alle");
             for (int i = 0; i < cl.size(); i++) {
-                cl.get(i).send("MSG#"+client.getClientName()+"#: "+out[2]);
+                cl.get(i).send("MSG#"+client.getClientName()+"#"+out[2]);
             }
         }else if (clientNames.length == 1&& !clientNames[0].equals("*")){
             for (int i = 0; i < cl.size(); i++) {
@@ -50,7 +49,7 @@ public class ChatServer implements Observer {
                 if(cl.get(i).getClientName().equals(clientNames[0])){
                     HandleClient client1 = cl.get(i);
                     System.out.println("vi sender om lidt");
-                            client1.send("MSG#"+client.getClientName()+"#: "+out[2]);
+                            client1.send("MSG#"+client.getClientName()+"#"+out[2]);
                 
                 System.out.println("nu prøver jeg at sende til en");
                 System.out.println(out[2]);
@@ -63,7 +62,7 @@ public class ChatServer implements Observer {
             while(j<clientNames.length){
             for (int i = 0; i < cl.size(); i++){
                 if(cl.get(i).getClientName().equals(clientNames[j]))
-                cl.get(i).send("MSG#"+client.getClientName()+"#: "+out[2]);
+                cl.get(i).send("MSG#"+client.getClientName()+"#"+out[2]);
             }
             j++;
             }
