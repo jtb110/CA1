@@ -4,14 +4,10 @@
  * and open the template in the editor.
  */
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import serverRelated.ChatServer;
-import client.ChatClient;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
