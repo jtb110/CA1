@@ -50,7 +50,7 @@ public class HandleClient extends Observable implements Runnable {
     }
 
     public void run() {
-        writer.println("MSG#Server#you are now logged into the chatserver. Write ur username");
+//        writer.println("MSG#Server#you are now logged into the chatserver. Write ur username");
         String message = input.nextLine(); //IMPORTANT blocking call
         String[] msg = message.split("#");
         if (msg[0].equals("USER")) {

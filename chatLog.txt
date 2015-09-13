@@ -1,4 +1,20 @@
-sep. 13, 2015 1:30:05 PM serverRelated.ChatServer runServer
+sep. 13, 2015 3:46:54 PM serverRelated.ChatServer runServer
 INFO: Sever started. Listening on: 9090, bound to: localhost
-sep. 13, 2015 1:30:05 PM serverRelated.ChatServer runServer
+sep. 13, 2015 3:46:54 PM serverRelated.ChatServer runServer
 INFO: Connected to a client
+sep. 13, 2015 3:46:54 PM serverRelated.HandleClient run
+INFO: Received the message: MSG#PELLE#HEJ 
+sep. 13, 2015 3:46:54 PM serverRelated.HandleClient run
+INFO: Received the message: MSG#PELLE#HEJ 
+sep. 13, 2015 3:46:54 PM serverRelated.HandleClient run
+INFO: Closed a Connection
+sep. 13, 2015 3:46:54 PM serverRelated.ChatServer runServer
+INFO: Connected to a client
+sep. 13, 2015 3:46:54 PM serverRelated.ChatServer runServer
+INFO: Connected to a client
+sep. 13, 2015 3:46:54 PM serverRelated.HandleClient run
+INFO: Received the message: MSG#KURT#HEJ 
+sep. 13, 2015 3:46:54 PM serverRelated.HandleClient run
+INFO: Received the message: MSG#KURT#HEJ 
+sep. 13, 2015 3:46:54 PM serverRelated.HandleClient run
+INFO: Closed a Connection
