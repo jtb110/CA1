@@ -49,9 +49,7 @@ public class Tester {
         
         pw.println("USER#Test");
         String result = scan.nextLine();
-        result = scan.nextLine();
-        pw.println("USER#Test#Kan du se dette?");
-        result = scan.nextLine();
+        
         assertEquals("USER#Test#Kan du se dette?", result);
         pw.println("STOP#");
         soc.close();
