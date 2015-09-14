@@ -44,13 +44,13 @@ public class Tester {
         int port = 9090;
         
         Socket soc = new Socket(ip, port);
-        PrintWriter pw = new PrintWriter(soc.getOutputStream());
+        PrintWriter pw = new PrintWriter(soc.getOutputStream(),true);
         Scanner scan = new Scanner(soc.getInputStream());
         
         pw.println("USER#Test");
         String result = scan.nextLine();
         
-        assertEquals("USER#Test#Kan du se dette?", result);
+        assertEquals("USERLIST#Test,", result);
         pw.println("STOP#");
         soc.close();
     }
