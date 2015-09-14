@@ -92,6 +92,7 @@ public class ChatServer implements Observer {
         cl.remove(hc);
     }
 
+   
     public void runServer() {
         int port = Integer.parseInt(properties.getProperty("port"));
         String ip = properties.getProperty("serverIp");

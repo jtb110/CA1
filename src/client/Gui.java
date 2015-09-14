@@ -75,6 +75,11 @@ public class Gui extends javax.swing.JFrame implements Observer {
         });
 
         dcBtn.setText("disconnect");
+        dcBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dcBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,6 +161,10 @@ public class Gui extends javax.swing.JFrame implements Observer {
         client.sendToAll(sendTextField.getText());
         sendTextField.setText("");
     }//GEN-LAST:event_sendToAllBtnActionPerformed
+
+    private void dcBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dcBtnActionPerformed
+        client.sendToUsers("STOP#", "");
+    }//GEN-LAST:event_dcBtnActionPerformed
 
     /**
      * @param args the command line arguments

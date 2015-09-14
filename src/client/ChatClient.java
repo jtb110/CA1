@@ -21,7 +21,7 @@ import utils.Utils;
  */
 public class ChatClient extends Observable implements Runnable {
 
-    private static final Properties properties = Utils.initProperties("server.properties");
+//    private static final Properties properties = Utils.initProperties("server.properties");
     boolean listening;
     Socket socket;
     private int port;
@@ -35,8 +35,10 @@ public class ChatClient extends Observable implements Runnable {
     }
 
     public void connect() throws UnknownHostException, IOException {
-        this.port = Integer.parseInt(properties.getProperty("port"));
-        serverAddress = InetAddress.getByName(properties.getProperty("serverIp"));
+//        this.port = Integer.parseInt(properties.getProperty("port")); Couldn't get properties file to work. so we commented it out
+        this.port = 9090;
+        serverAddress = InetAddress.getByName("skolepelle.cloudapp.net");
+//        serverAddress = InetAddress.getByName(properties.getProperty("serverIp"));
         socket = new Socket(serverAddress, this.port);
         input = new Scanner(socket.getInputStream());
         output = new PrintWriter(socket.getOutputStream(), true);  //Set to true, to get auto flush behaviour
